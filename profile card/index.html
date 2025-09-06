@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Live region for screen readers -->
+    <div id="announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <div class="container">
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Student Registration</h1>
+                <p class="hero-subtitle">Join our academic community and create your profile</p>
+            </div>
+            <div class="hero-decoration"></div>
+        </header>
+
+        <main id="main-content" class="main-grid">
+            <!-- Registration Form -->
+            <section class="form-card">
+                <div class="card-header">
+                    <h2>Create Your Profile</h2>
+                    <p class="card-subtitle">Fill in your details to get started</p>
+                </div>
+                
+                <form id="registration-form" class="form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="label required">First Name</label>
+                            <input type="text" id="firstName" name="firstName" class="input" required 
+                                   aria-describedby="firstName-error" placeholder="Enter your first name">
+                            <div id="firstName-error" class="error-message" role="alert"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName" class="label required">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" class="input" required 
+                                   aria-describedby="lastName-error" placeholder="Enter your last name">
+                            <div id="lastName-error" class="error-message" role="alert"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="label required">Email Address</label>
+                        <input type="email" id="email" name="email" class="input" required 
+                               aria-describedby="email-error" placeholder="student@example.com">
+                        <div id="email-error" class="error-message" role="alert"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="programme" class="label required">Programme</label>
+                            <select id="programme" name="programme" class="select" required aria-describedby="programme-error">
+                                <option value="">Select your programme</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Software Engineering">Software Engineering</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Cybersecurity">Cybersecurity</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile Development">Mobile Development</option>
+                                <option value="AI & Machine Learning">AI & Machine Learning</option>
+                            </select>
+                            <div id="programme-error" class="error-message" role="alert"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="year" class="label required">Academic Year</label>
+                            <select id="year" name="year" class="select" required aria-describedby="year-error">
+                                <option value="">Select your year</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="Postgraduate">Postgraduate</option>
+                            </select>
+                            <div id="year-error" class="error-message" role="alert"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests" class="label">Interests & Hobbies</label>
+                        <textarea id="interests" name="interests" class="textarea" rows="3" 
+                                  placeholder="Tell us about your interests, hobbies, or areas of focus..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photoUrl" class="label">Profile Photo URL</label>
+                        <input type="url" id="photoUrl" name="photoUrl" class="input" 
+                               aria-describedby="photoUrl-error" placeholder="https://example.com/your-photo.jpg">
+                        <div id="photoUrl-error" class="error-message" role="alert"></div>
+                        <small class="form-hint">Optional: Add a link to your profile photo</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Create Profile</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Profile Cards Section -->
+            <section class="profiles-section">
+                <div class="section-header">
+                    <h2>Student Profiles</h2>
+                    <div class="profile-stats">
+                        <span id="profile-count">0</span> students registered
+                    </div>
+                </div>
+                
+                <div id="search-container" class="search-container" style="display: none;">
+                    <div class="search-box">
+                        <input type="text" id="search-input" class="search-input" 
+                               placeholder="Search students by name, programme, or year...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div id="profile-cards" class="profile-grid">
+                    <div class="empty-state">
+                        <div class="empty-icon">👥</div>
+                        <h3>No profiles yet</h3>
+                        <p>Create your first student profile using the form</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Table -->
+            <section class="table-section">
+                <div class="section-header">
+                    <h2>Registration Summary</h2>
+                </div>
+                
+                <div class="table-container">
+                    <table id="summary-table" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Programme</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                    
+                    <div id="table-empty" class="table-empty">
+                        <p>No registrations to display</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Student Registration Portal • Built with ❤️ for education</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
